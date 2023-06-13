@@ -1,5 +1,5 @@
+import { db } from "@/lib/db";
 import Link from "next/link";
-import { prisma } from "../../../lib/db";
 import { redirect } from "next/navigation";
 
 
@@ -11,7 +11,7 @@ async function createTodo(data: FormData){
         throw new Error("Invalue title")
     }
 
-    await prisma.todo.create({data: {title, complete: false}})
+    await db.todo.create({data: {title, complete: false}})
     redirect("/")
 }
 

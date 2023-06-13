@@ -22,10 +22,10 @@ import {
 import { User } from "@/types";
 import { calculateGamblingStats } from "@/queries";
 import { authOptions } from "../../api/auth/[...nextauth]/route";
-import { prisma } from "../../../lib/db";
 import RegisterSessionForm from "@/components/SessionForm";
 import { revalidatePath } from "next/cache";
 import RegisterSessionFormV2 from "@/components/SessionFormv2";
+import { db } from "@/lib/db";
 
 async function getSession() {
   "use server";
@@ -55,7 +55,7 @@ export default async function Home() {
     1
   );
   // Find all unique session dates
-  const gamblingsession = await prisma.gamblingSession.groupBy({
+  const gamblingsession = await db.gamblingSession.groupBy({
     where: {
       userid: session.user.id,
     },
@@ -75,8 +75,8 @@ export default async function Home() {
 
   return (
     <>
-      <div className="flex h-[600px] justify-center items-center container ">
-        <Card className={cn("w-[500px] text-center rounded-l")}>
+      <div className="flex justify-center items-center w-screen sm:p-2">
+        <Card className={cn("w-screen h-full text-center rounded-l sm:w-[500px]")}>
           <CardHeader>
             <CardTitle className={cn("text-2xl")}>
               {session?.user?.name}

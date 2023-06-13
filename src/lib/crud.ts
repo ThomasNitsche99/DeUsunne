@@ -1,8 +1,8 @@
-import { prisma } from "./db";
+import { db } from "./db";
 
 
 export async function getPosts(id: string) {
-  const posts = await prisma.gamblingSession.findMany({
+  const posts = await db.gamblingSession.findMany({
     select: {
         createdAt: true,
         deposit: true,
@@ -22,8 +22,8 @@ export async function getPosts(id: string) {
         AND: {
             user: {
                 following: {
-                    some: {
-                        followingId: id
+                    every:{
+                        followingId: id,
                     }
                 }
             }
@@ -36,3 +36,9 @@ export async function getPosts(id: string) {
   });
   return posts;
 }
+
+export async function userrs() {
+
+    const users = await db.user.findMany();
+    return users;
+  }

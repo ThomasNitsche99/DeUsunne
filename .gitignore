@@ -39,3 +39,5 @@ dev.db*
 
 
 .vercel
+**/migrations
+prisma/schema.prisma

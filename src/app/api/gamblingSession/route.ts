@@ -1,9 +1,9 @@
-import { prisma } from "@/lib/db";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 import { authOptions } from "../auth/[...nextauth]/route";
 import { User } from "@/types";
 import { revalidatePath } from "next/cache";
+import { db } from "@/lib/db";
 
 export async function POST(req: NextRequest) {
   try {
@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
 
     const { deposit, withdraw, feedable, message } = await req.json();
     
-    const gamblingSession = await prisma.gamblingSession.create({
+    const gamblingSession = await db.gamblingSession.create({
       data: {
         deposit: parseInt(deposit),
         withdraw: parseInt(withdraw),

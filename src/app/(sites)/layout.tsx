@@ -11,8 +11,8 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center container my-4">
-      <div className="my-6">
+    <div className=" h-full flex flex-col justify-center items-center ">
+      <div className="border mb-2 sm:mb-4">
         <Nav />
       </div>
       {children}
