@@ -13,27 +13,26 @@ import { Separator } from "@/components/ui/separator";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
-  TableHeader,
   TableRow,
 } from "@/components/ui/table";
 import { User } from "@/types";
 import { calculateGamblingStats } from "@/queries";
 import { authOptions } from "../../api/auth/[...nextauth]/route";
 import RegisterSessionForm from "@/components/SessionForm";
-import { revalidatePath } from "next/cache";
-import RegisterSessionFormV2 from "@/components/SessionFormv2";
 import { db } from "@/lib/db";
+
+export const dynamic = "force-dynamic";
 
 async function getSession() {
   "use server";
   const session = (await getServerSession(authOptions)) as unknown as User;
+  console.log("duda")
   return session;
 }
 
-export const revalidate = 1;
+
 
 //Home page, Showing just user card
 export default async function Home() {

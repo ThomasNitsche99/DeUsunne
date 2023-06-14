@@ -19,6 +19,8 @@ export default async function FeedPage() {
   }
   const posts = await getPosts(session.user.id);
 
+  console.log("Feed page")
+
   return (
     <>
       <div className="flex justify-evenly items-center container flex-col sm:w-full">

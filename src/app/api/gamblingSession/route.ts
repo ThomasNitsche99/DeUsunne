@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    
+    console.log("route revalidatin");
     revalidatePath("/home");
     
     return NextResponse.json({
